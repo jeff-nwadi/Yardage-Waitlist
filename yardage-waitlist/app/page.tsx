@@ -10,7 +10,7 @@ import icon4 from "@/images/icon-4.svg"
 import Link from "next/link";
 import GsapMagnet from "@/components/GsapMagnet";
 import { motion } from "framer-motion";
-import JoinWaitlist from "@/components/mvpblocks/delete-project";
+import JoinWaitlist from "@/components/JoinWaitlist";
 
 export default function Home() {
   return (
@@ -51,7 +51,7 @@ export default function Home() {
             className="block cursor-pointer"
           >
             <JoinWaitlist>
-              <Button className="uppercase heading tracking-wider cursor-pointer rounded-full py-2">
+              <Button className="uppercase heading tracking-wider text-sm cursor-pointer rounded-full py-5 px-2  md:py-7 md:px-4">
                 Get Early access
               </Button>
             </JoinWaitlist>
