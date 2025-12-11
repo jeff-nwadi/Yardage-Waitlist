@@ -19,24 +19,21 @@ const containerVariants: Variants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.05,
-            delayChildren: 0.1,
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
         },
     },
 };
 
 const itemVariants: Variants = {
-    hidden: {
-        opacity: 0,
-        y: 10,
-    },
+    hidden: { y: 20, opacity: 0 },
     visible: {
-        opacity: 1,
         y: 0,
+        opacity: 1,
         transition: {
-            type: 'tween',
-            duration: 0.2,
-            ease: 'easeOut',
+            type: 'spring',
+            stiffness: 300,
+            damping: 24,
         },
     },
 };
