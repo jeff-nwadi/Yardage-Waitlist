@@ -161,11 +161,11 @@ export default function Home() {
           animate="visible"
         >
           <div className="space-y-4 text-center">
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">stop</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">moving</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">clutter.</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">start</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">selling.</motion.h1>
+            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">stop</motion.h1>
+            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">moving</motion.h1>
+            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter.</motion.h1>
+            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">start</motion.h1>
+            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
           </div>
 
           <motion.div variants={containerVariants} className="flex items-center justify-center flex-col -space-y-30">
@@ -193,15 +193,15 @@ export default function Home() {
 
       {/* Tablet screen */}
       <motion.div
-        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center h-screen"
+        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="space-y-4 text-center">
-          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">stop moving</motion.h1>
-          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">clutter. start</motion.h1>
-          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">selling.</motion.h1>
+          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">stop moving</motion.h1>
+          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter. start</motion.h1>
+          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
         </div>
 
         <motion.div variants={containerVariants} className="flex items-center justify-center flex-col -space-y-35">
