@@ -1,16 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const CSV_FILE = path.join(DATA_DIR, 'waitlist.csv');
-
-// Helper to escape CSV values
-function escapeCSV(value: string): string {
-    if (value.includes(',') || value.includes('"') || value.includes('\n')) {
-        return `"${value.replace(/"/g, '""')}"`;
-    }
-    return value;
+// Initialize auth with service account credentials
+function getAuthClient() {
+    const serviceAccountAuth = new JWT({
+        email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+    return serviceAccountAuth;
 }
 
 // Helper to format date nicely
@@ -22,34 +21,6 @@ function formatDate(date: Date): string {
         hour: '2-digit',
         minute: '2-digit'
     });
-}
-
-// Helper to read existing emails from CSV
-function readExistingEmails(): Set<string> {
-    const emails = new Set<string>();
-
-    if (fs.existsSync(CSV_FILE)) {
-        const content = fs.readFileSync(CSV_FILE, 'utf-8');
-        const lines = content.split('\n').filter(line => line.trim());
-
-        // Skip header, read emails (first column)
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i];
-            // Handle quoted values
-            let email = '';
-            if (line.startsWith('"')) {
-                const endQuote = line.indexOf('",', 1);
-                email = line.substring(1, endQuote).replace(/""/g, '"');
-            } else {
-                email = line.split(',')[0];
-            }
-            if (email) {
-                emails.add(email.toLowerCase());
-            }
-        }
-    }
-
-    return emails;
 }
 
 export async function POST(request: NextRequest) {
@@ -72,34 +43,41 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Ensure data directory exists
-        if (!fs.existsSync(DATA_DIR)) {
-            fs.mkdirSync(DATA_DIR, { recursive: true });
+        // Check environment variables
+        if (!process.env.GOOGLE_SHEET_ID || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
+            console.error('Missing Google Sheets environment variables');
+            return NextResponse.json(
+                { error: 'Server configuration error' },
+                { status: 500 }
+            );
         }
 
-        // Check for duplicate email
-        const existingEmails = readExistingEmails();
-        if (existingEmails.has(email.toLowerCase())) {
+        // Initialize Google Sheets
+        const auth = getAuthClient();
+        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, auth);
+
+        await doc.loadInfo();
+        const sheet = doc.sheetsByIndex[0]; // First sheet
+
+        // Get all rows to check for duplicates
+        const rows = await sheet.getRows();
+        const emailExists = rows.some(row =>
+            row.get('Email')?.toLowerCase() === email.toLowerCase()
+        );
+
+        if (emailExists) {
             return NextResponse.json(
                 { error: 'Email already registered' },
                 { status: 409 }
             );
         }
 
-        // Format the timestamp
-        const formattedDate = formatDate(new Date());
-
-        // Create new row with status
-        const newRow = `${escapeCSV(email)},${escapeCSV(formattedDate)},Joined`;
-
-        // If file doesn't exist, create with header
-        if (!fs.existsSync(CSV_FILE)) {
-            const header = 'Email,Submitted At,Status';
-            fs.writeFileSync(CSV_FILE, `${header}\n${newRow}\n`, 'utf-8');
-        } else {
-            // Append to existing file
-            fs.appendFileSync(CSV_FILE, `${newRow}\n`, 'utf-8');
-        }
+        // Add new row
+        await sheet.addRow({
+            'Email': email,
+            'Submitted At': formatDate(new Date()),
+            'Status': '✓ Joined'
+        });
 
         return NextResponse.json(
             { message: 'Successfully joined the waitlist!' },
@@ -107,7 +85,6 @@ export async function POST(request: NextRequest) {
         );
     } catch (error) {
         console.error('Error saving to waitlist:', error);
-
         return NextResponse.json(
             { error: 'Failed to join waitlist. Please try again.' },
             { status: 500 }
@@ -118,17 +95,18 @@ export async function POST(request: NextRequest) {
 // GET endpoint to check waitlist count
 export async function GET() {
     try {
-        if (!fs.existsSync(CSV_FILE)) {
+        if (!process.env.GOOGLE_SHEET_ID || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
             return NextResponse.json({ count: 0 });
         }
 
-        const content = fs.readFileSync(CSV_FILE, 'utf-8');
-        const lines = content.split('\n').filter(line => line.trim());
+        const auth = getAuthClient();
+        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, auth);
 
-        // Subtract 1 for header row
-        const count = Math.max(0, lines.length - 1);
+        await doc.loadInfo();
+        const sheet = doc.sheetsByIndex[0];
+        const rows = await sheet.getRows();
 
-        return NextResponse.json({ count });
+        return NextResponse.json({ count: rows.length });
     } catch (error) {
         console.error('Error reading waitlist:', error);
         return NextResponse.json(
