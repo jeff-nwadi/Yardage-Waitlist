@@ -153,7 +153,7 @@ export default function Home() {
 
 
       {/* Mobile screen */}
-      <div className="h-screen">
+      <div className="">
         <motion.div
           className="md:hidden py-10 flex-col flex items-center justify-center"
           variants={containerVariants}
@@ -193,7 +193,7 @@ export default function Home() {
 
       {/* Tablet screen */}
       <motion.div
-        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center md:h-scree"
+        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center h-screen"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
