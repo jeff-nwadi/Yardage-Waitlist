@@ -162,7 +162,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-
       {/* Mobile screen */}
       <div className="">
         <motion.div
@@ -204,15 +203,15 @@ export default function Home() {
 
       {/* Tablet screen */}
       <motion.div
-        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center min-h-screen"
+        className="hidden md:flex lg:hidden flex-col items-center justify-center min-h-screen"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={containerVariants} className="space-y-4 text-center">
-          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">stop moving</motion.h1>
-          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter. start</motion.h1>
-          <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
+        <motion.div variants={containerVariants} className="space-y-6 text-center">
+          <motion.h1 variants={itemVariants} className="uppercase heading text-7xl text-[#8b46dd] tracking-wider leading-14">stop moving</motion.h1>
+          <motion.h1 variants={itemVariants} className="uppercase heading text-7xl text-[#8b46dd] tracking-wider leading-14">clutter. start</motion.h1>
+          <motion.h1 variants={itemVariants} className="uppercase heading text-7xl text-[#8b46dd] tracking-wider leading-14">selling.</motion.h1>
         </motion.div>
 
         <motion.div variants={imageContainerVariants} className="flex items-center justify-center flex-col -space-y-35">
