@@ -14,19 +14,19 @@ import JoinWaitlist from "@/components/JoinWaitlist";
 
 export default function Home() {
   return (
-    <div className="bg-[#fcf8e6] h-screen">
+    <div className="lg:h-screen">
       <div className="lg:py-14 flex items-center justify-center">
         <Image src={logo} alt="Logo" width={145} height={57} className="w-23 h-23 lg:w-auto lg:h-auto" />
       </div>
 
-      <div className="flex flex-col items-center justify-center relative py-24">
+      <div className="hidden lg:flex flex-col items-center justify-center relative py-24 ">
         <div className="absolute inset-0 w-full h-full max-w-7xl mx-auto pointer-events-none">
           <GsapMagnet>
-            <Image src={icon2} alt="Shoe Racks" width={145} height={57} className="pointer-events-auto cursor-pointer absolute w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 left-[15%] top-[5%] md:left-[12%] md:top-[6%] lg:left-[20%] lg:top-[-2%]" />
+            <Image src={icon2} alt="Shoe Racks" width={145} height={57} className="pointer-events-auto cursor-pointer absolute w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 left-[15%] bottom-[5%] md:left-[12%] md:top-[6%] lg:left-[20%] lg:top-[-2%]" />
           </GsapMagnet>
           {/* Top Left - Shoe Racks */}
           <GsapMagnet>
-            <Image src={icon3} alt="Chairs" width={145} height={57} className="pointer-events-auto cursor-pointer absolute w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 right-[15%] top-[10%] md:right-[12%] md:top-[6%] lg:right-[17%] lg:top-[-2%]" />
+            <Image src={icon3} alt="Chairs" width={145} height={57} className="pointer-events-auto cursor-pointer absolute w-20 h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 right-[15%] bottom-[10%] md:right-[12%] md:top-[6%] lg:right-[17%] lg:top-[-2%]" />
           </GsapMagnet>
           {/* Top Right - Chairs */}
           <GsapMagnet>
@@ -51,13 +51,92 @@ export default function Home() {
             className="block cursor-pointer"
           >
             <JoinWaitlist>
-              <Button className="uppercase heading tracking-wider text-sm cursor-pointer rounded-full py-5 px-2  md:py-7 md:px-4">
+              <Button className="uppercase heading tracking-wider text-sm cursor-pointer rounded-full md:py-7 md:px-4">
                 Get Early access
               </Button>
             </JoinWaitlist>
           </motion.div>
         </div>
       </div>
-    </div>
+
+
+      {/* Mobile screen */}
+      <div>
+          <div className="md:hidden py-10 flex-col flex items-center justify-center">
+        <div className="space-y-4 text-center">
+          <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">stop</h1>
+          <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">moving</h1>
+          <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">clutter.</h1>
+          <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">start</h1>
+          <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">selling.</h1>
+        </div>
+
+        <div className="flex items-center justify-center flex-col -space-y-30">
+          <GsapMagnet>
+            <Image src={icon1} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " />
+          </GsapMagnet>
+           <GsapMagnet>
+            <Image src={icon2} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " />
+          </GsapMagnet>
+           <GsapMagnet>
+            <Image src={icon3} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " />
+          </GsapMagnet>
+           <GsapMagnet>
+            <Image src={icon4} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50" />
+          </GsapMagnet>
+        </div>
+
+         <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400 }}
+            className="block cursor-pointer"
+          >
+            <JoinWaitlist>
+              <Button className="uppercase heading tracking-wider text-sm cursor-pointer rounded-full py-7 px-4 ">
+                Get Early access
+              </Button>
+            </JoinWaitlist>
+          </motion.div>
+      </div>
+      </div>
+
+      {/* Tablet screen */}
+      <div className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center">
+          <div className="space-y-4 text-center">
+            <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">stop moving</h1>
+            <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">clutter. start</h1>
+            <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">selling.</h1>
+          </div>
+
+        <div className="flex items-center justify-center flex-col -space-y-35">
+          <GsapMagnet>
+            <Image src={icon1} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
+          </GsapMagnet>
+           <GsapMagnet>
+            <Image src={icon2} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
+          </GsapMagnet>
+           <GsapMagnet>
+            <Image src={icon3} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
+          </GsapMagnet>
+           <GsapMagnet>
+            <Image src={icon4} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
+          </GsapMagnet>
+        </div>
+
+        <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400 }}
+            className="block cursor-pointer"
+          >
+            <JoinWaitlist>
+              <Button className="uppercase heading tracking-wider text-sm cursor-pointer rounded-full md:py-7 md:px-4">
+                Get Early access
+              </Button>
+            </JoinWaitlist>
+          </motion.div>
+      </div>
+      </div>
   );
 }
