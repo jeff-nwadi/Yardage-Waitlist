@@ -72,18 +72,10 @@ export default function Home() {
         </div>
 
         <div className="flex items-center justify-center flex-col -space-y-30">
-          <GsapMagnet>
             <Image src={icon1} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " />
-          </GsapMagnet>
-           <GsapMagnet>
             <Image src={icon2} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " />
-          </GsapMagnet>
-           <GsapMagnet>
             <Image src={icon3} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " />
-          </GsapMagnet>
-           <GsapMagnet>
             <Image src={icon4} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50" />
-          </GsapMagnet>
         </div>
 
          <motion.div
@@ -102,7 +94,7 @@ export default function Home() {
       </div>
 
       {/* Tablet screen */}
-      <div className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center">
+      <div className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center md:h-scree">
           <div className="space-y-4 text-center">
             <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">stop moving</h1>
             <h1 className="uppercase heading text-6xl text-[#8b46dd] tracking-wider">clutter. start</h1>
@@ -110,18 +102,10 @@ export default function Home() {
           </div>
 
         <div className="flex items-center justify-center flex-col -space-y-35">
-          <GsapMagnet>
             <Image src={icon1} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
-          </GsapMagnet>
-           <GsapMagnet>
             <Image src={icon2} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
-          </GsapMagnet>
-           <GsapMagnet>
             <Image src={icon3} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
-          </GsapMagnet>
-           <GsapMagnet>
             <Image src={icon4} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " />
-          </GsapMagnet>
         </div>
 
         <motion.div
