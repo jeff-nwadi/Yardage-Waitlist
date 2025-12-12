@@ -19,8 +19,8 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.2,
+      delayChildren: 0.4,
     },
   },
 };
@@ -30,8 +30,8 @@ const imageContainerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.6,
+      staggerChildren: 0.4,
+      delayChildren: 0.8,
     },
   },
 };
@@ -141,7 +141,8 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 variants={itemVariants} className="uppercase heading text-[1.5rem] md:text-4xl lg:text-7xl text-[#8b46dd] tracking-wider">stop moving clutter.</motion.h1>
+          <motion.h1 variants={itemVariants} 
+          className="uppercase heading text-[1.5rem] md:text-4xl lg:text-7xl text-[#8b46dd] tracking-wider">stop moving clutter.</motion.h1>
           <motion.h1 variants={itemVariants} className="uppercase heading text-[1.5rem] md:text-4xl lg:text-7xl text-[#8b46dd] tracking-wider lg:pt-3">start selling.</motion.h1>
           <motion.p variants={itemVariants} className="text-[#8b46dd] text-sm md:text-xl w-[48vh] md:w-[62vh] lg:w-[68vh] text-center py-4 lg:py-7">We make campus exchange effortless. Join the waitlist
             and we'll notify you the moment you can turn your old stash into cash.
@@ -171,11 +172,39 @@ export default function Home() {
           animate="visible"
         >
           <motion.div variants={containerVariants} className="space-y-4 text-center">
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">stop</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">moving</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter.</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">start</motion.h1>
-            <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
+            <motion.h1 variants={itemVariants}
+             className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12"
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+             >
+             stop
+             </motion.h1>
+            <motion.h1 variants={itemVariants} 
+             initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">moving</motion.h1>
+            <motion.h1 variants={itemVariants} 
+               initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+            className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter.</motion.h1>
+            <motion.h1 variants={itemVariants} 
+               initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+            className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">start</motion.h1>
+            <motion.h1 variants={itemVariants} 
+               initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+            className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
           </motion.div>
 
           <motion.div variants={imageContainerVariants} className="flex items-center justify-center flex-col -space-y-30">
@@ -226,6 +255,9 @@ export default function Home() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400 }}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
           className="block cursor-pointer"
         >
           <JoinWaitlist>
