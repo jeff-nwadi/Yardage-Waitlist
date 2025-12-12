@@ -25,6 +25,17 @@ const containerVariants: Variants = {
   },
 };
 
+const imageContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.6,
+    },
+  },
+};
+
 const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -160,15 +171,15 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          <div className="space-y-4 text-center">
+          <motion.div variants={containerVariants} className="space-y-4 text-center">
             <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">stop</motion.h1>
             <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">moving</motion.h1>
             <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter.</motion.h1>
             <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">start</motion.h1>
             <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
-          </div>
+          </motion.div>
 
-          <motion.div variants={containerVariants} className="flex items-center justify-center flex-col -space-y-30">
+          <motion.div variants={imageContainerVariants} className="flex items-center justify-center flex-col -space-y-30">
             <motion.div variants={itemVariants}><Image src={icon1} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " /></motion.div>
             <motion.div variants={itemVariants}><Image src={icon2} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " /></motion.div>
             <motion.div variants={itemVariants}><Image src={icon3} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-50 h-50 " /></motion.div>
@@ -193,18 +204,18 @@ export default function Home() {
 
       {/* Tablet screen */}
       <motion.div
-        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center"
+        className="hidden md:flex lg:hidden py-10 flex-col items-center justify-center min-h-screen"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="space-y-4 text-center">
+        <motion.div variants={containerVariants} className="space-y-4 text-center">
           <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">stop moving</motion.h1>
           <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">clutter. start</motion.h1>
           <motion.h1 variants={itemVariants} className="uppercase heading text-6xl text-[#8b46dd] tracking-wider leading-12">selling.</motion.h1>
-        </div>
+        </motion.div>
 
-        <motion.div variants={containerVariants} className="flex items-center justify-center flex-col -space-y-35">
+        <motion.div variants={imageContainerVariants} className="flex items-center justify-center flex-col -space-y-35">
           <motion.div variants={itemVariants}><Image src={icon1} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " /></motion.div>
           <motion.div variants={itemVariants}><Image src={icon2} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " /></motion.div>
           <motion.div variants={itemVariants}><Image src={icon3} alt="Cupboards" width={145} height={57} className="pointer-events-auto cursor-pointer w-45 h-45 md:w-55 md:h-55 " /></motion.div>
