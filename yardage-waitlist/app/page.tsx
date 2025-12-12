@@ -153,7 +153,7 @@ export default function Home() {
 
 
       {/* Mobile screen */}
-      <div>
+      <div className="h-screen">
         <motion.div
           className="md:hidden py-10 flex-col flex items-center justify-center"
           variants={containerVariants}
